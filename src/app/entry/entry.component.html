@@ -1,0 +1,18 @@
+<div class="col s12 m8 offset-m2 l6 offset-l3">
+  <div class="card-panel grey lighten-5 z-depth-1">
+    <div class="row valign-wrapper">
+      <div class="col s2">
+        <img class="circle responsive-img" [src]="subreddit.data.thumbnail">
+      </div>
+      <div class="col s10">
+        <span class="black-text">
+          <h4 class="flow-text">{{subreddit.data.title}}</h4>
+          <p>POINTS: {{subreddit.data.score}}</p>
+          <p>COMMENTS: {{subreddit.data.num_comments}}</p>
+          <p>DATE: {{subreddit.data.created * 1000 | date: 'medium'}}</p>
+          <a href="{{subreddit.data.permalink}}">link</a>
+        </span>
+      </div>
+    </div>
+  </div>
+</div>

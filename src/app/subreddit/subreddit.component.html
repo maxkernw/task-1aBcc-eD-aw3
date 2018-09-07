@@ -1,0 +1,17 @@
+
+<input #search (keyup.enter)="update(search.value)" />
+<div class="input-field col s12">
+    <select (change)="limit($event.target.value)">
+        <option value="5">5</option>
+        <option value="10">10</option>
+        <option value="25">25</option>
+    </select>
+</div>
+<div *ngIf="main">
+  <h2 class="flow-text">{{main.data.title}}</h2>
+</div>
+<div *ngIf="data">
+  <div *ngFor="let post of data">
+    <app-entry [subreddit]="post"></app-entry>
+  </div>
+</div>
