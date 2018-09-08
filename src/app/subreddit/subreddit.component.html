@@ -1,5 +1,5 @@
 
-<input #search (keyup.enter)="update(search.value)" />
+<input #search [value]="query" (keyup.enter)="update(search.value)" />
 <div class="input-field col s12">
     <select (change)="limit($event.target.value)">
         <option value="5">5</option>
@@ -12,6 +12,6 @@
 </div>
 <div *ngIf="data">
   <div *ngFor="let post of data">
-    <app-entry [subreddit]="post"></app-entry>
+    <app-entry (click)="navigate(post)" [subreddit]="post"></app-entry>
   </div>
 </div>

@@ -13,8 +13,13 @@ export class HttpService implements IHttpService {
   constructor(private http: HttpClient) {
 
   }
-  get<T>(name, limit): Observable<T> {
-     return this.http.get<T>(`${this.baseUrl}/${name}.json?limit=${limit}`)
+  get<T>(subredditName: string, limit: number, after?: string): Observable<T> {
+     return this.http.get<T>(`${this.baseUrl}/${subredditName}.json?limit=${limit}`)
+  }
+
+  getDetail<T>(subredditName: string, id: string): Observable<T> {
+    console.log(id)
+    return this.http.get<T>(`${this.baseUrl}/${subredditName}/comments/${id}.json`)
   }
 }
 

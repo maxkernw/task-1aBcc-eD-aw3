@@ -8,5 +8,8 @@ export interface Subreddit {
         score: string,
         permalink: string,
         title: string
+        subreddit_id: string,
+        selftext: string,
+        id: string
     }
 }

@@ -1,5 +1,7 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { Subreddit } from '../models/subreddit.model';
+import { isUrl } from '../helpers/isUrl.helper';
+const fallbackImage = "../../../assets/fallback.png"
 
 @Component({
   selector: 'app-entry',
@@ -9,25 +11,31 @@ import { Subreddit } from '../models/subreddit.model';
 export class EntryComponent implements OnInit {
 
   @Input() subreddit: Subreddit;
-  date: any
+  created: number;
+  thumbnail: string;
+  title: string;
+  author: string;
+  permalink: string;
+  score: string;
+  num_comments: number;
 
   constructor() { }
 
   ngOnInit() {
-    this.cleanImage(this.subreddit.data.thumbnail)
-    this.convertDate(this.subreddit.data.created)
-  }
+    const { thumbnail,
+      created,
+      title,
+      permalink,
+      score,
+      num_comments,
+      author } = this.subreddit.data;
 
-  private cleanImage(url: string) {
-    if (!url || url == "self") {
-      this.subreddit.data.thumbnail = "https://i.redd.it/rq36kl1xjxr01.png"
-    }
-  }
-  private convertDate(date: number) {
-    const dateFormatted = new Date(date * 1000);
-    var hours = dateFormatted.getHours();
-    var minutes = "0" + dateFormatted.getMinutes();
-    var seconds = "0" + dateFormatted.getSeconds();
-    this.date = hours + ':' + minutes.substr(-2) + ':' + seconds.substr(-2);
+    this.thumbnail = isUrl(thumbnail) ? thumbnail : fallbackImage;
+    this.created = created;
+    this.title = title;
+    this.permalink = `https://reddit.com${permalink}`
+    this.score = score;
+    this.num_comments = num_comments;
+    this.author = author;
   }
 }

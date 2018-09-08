@@ -7,12 +7,16 @@ import { RouterModule } from '@angular/router';
 import { appRoutes } from './app.routes';
 import { SubredditComponent } from './subreddit/subreddit.component';
 import { HttpClientModule } from '@angular/common/http';
+import { DetailComponent } from './detail/detail.component';
+import { CommentComponent } from './comment/comment.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     EntryComponent,
-    SubredditComponent
+    SubredditComponent,
+    DetailComponent,
+    CommentComponent
   ],
   imports: [
     BrowserModule,

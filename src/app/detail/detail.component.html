@@ -1,0 +1,29 @@
+<!-- <div *ngFor="let data of response">
+  <div *ngFor="let post of data.data.children">
+    <p *ngIf="post.data.selftext">
+      {{post.data.selftext}}
+    </p>
+    <ul *ngIf="post.data.replies">
+      <ng-template #recursiveList let-list>
+        <li *ngFor="let item of post.data.replies.data.children">
+          {{item | json}}
+          <ul *ngIf="item.children.length > 0">
+            <ng-container *ngTemplateOutlet="recursiveList; context:{ $implicit: post.data.replies.data.children }"></ng-container>
+          </ul>
+        </li>
+      </ng-template>
+      <ng-container *ngTemplateOutlet="recursiveList; context:{ $implicit: list }"></ng-container>
+    </ul>
+
+  </div>
+</div> -->
+
+<ul>
+  <li *ngFor="let item of response.data.children">
+    <div *ngFor="let comment of item.data.children">
+      <div *ngFor="let reply of comment.data.replies">
+        {{reply | json}}
+      </div>
+    </div>
+  </li>
+</ul>
