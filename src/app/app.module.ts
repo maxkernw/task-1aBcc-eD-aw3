@@ -8,7 +8,6 @@ import { appRoutes } from './app.routes';
 import { SubredditComponent } from './components/subreddit/subreddit.component';
 import { HttpClientModule } from '@angular/common/http';
 import { DetailComponent } from './components/detail/detail.component';
-import { CommentComponent } from './components/comment/comment.component';
 import { TreeComponent } from './components/tree/tree.component';
 import { LoadingComponent } from './components/loading/loading.component';
 import { ErrorComponent } from './components/error/error.component';
@@ -21,7 +20,6 @@ import { AppComponent } from './app.component';
     EntryComponent,
     SubredditComponent,
     DetailComponent,
-    CommentComponent,
     TreeComponent,
     LoadingComponent,
     ErrorComponent

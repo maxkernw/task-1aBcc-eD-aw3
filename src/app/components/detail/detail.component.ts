@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { Router, ActivatedRoute, Params } from '@angular/router';
+import { ActivatedRoute, Params } from '@angular/router';
 import { RedditService } from '../../services/reddit.service';
 import { RedditResponse } from '../../models/redditResponse.model';
 
@@ -14,7 +14,7 @@ export class DetailComponent implements OnInit {
   post: Comment[];
   loading: boolean = true;
 
-  public constructor(private route: ActivatedRoute, private router: Router, private redditService: RedditService) { }
+  public constructor(private route: ActivatedRoute, private redditService: RedditService) { }
 
   ngOnInit(): void {
     const { sub } = this.route.snapshot.params
