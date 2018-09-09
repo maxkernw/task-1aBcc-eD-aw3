@@ -1,0 +1,24 @@
+<li class="browser-default" *ngFor="let node of node.children">
+  <div class="col s12 m8 offset-m2 l6 offset-l3">
+    <div class="card-panel grey lighten-5 z-depth-1">
+      <div class="row valign-wrapper">
+        <div class="col s2">
+          <img src="assets/fallback.png" alt="" class="circle responsive-img">
+        </div>
+        <div class="col s10">
+          <span class="black-text">
+            <p>{{node.data.author}}</p>
+            <p>{{node.data.body}} </p>
+          </span>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div *ngIf="node.data.replies">
+    <ul class="browser-default">
+      <li class="browser-default">
+        <app-tree [node]="node.data.replies.data"></app-tree>
+      </li>
+    </ul>
+  </div>
+</li>

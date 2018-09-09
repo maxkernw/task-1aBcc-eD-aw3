@@ -10,6 +10,7 @@ export interface Subreddit {
         title: string
         subreddit_id: string,
         selftext: string,
-        id: string
+        id: string,
+        name: string
     }
 }

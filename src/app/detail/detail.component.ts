@@ -13,8 +13,11 @@ import { RedditResponse } from '../models/redditResponse.model';
 export class DetailComponent implements OnInit {
   selftext: string;
   id: string;
-  response: Comment;
-  public constructor(private data: Data<Subreddit>, private router: Router, private redditService: RedditService)  { }
+  comments: any;
+  post: any;
+  loading: boolean = true;
+
+  public constructor(private data: Data<Subreddit>, private router: Router, private redditService: RedditService) { }
 
   ngOnInit() {
     if (this.data.storage == null) {
@@ -27,10 +30,11 @@ export class DetailComponent implements OnInit {
   }
 
   getData(): void {
-    this.redditService.getDetail<RedditResponse<Comment>>("sweden", this.id).subscribe((data) => {
-      console.log(data);
-      this.response = data[1];
-      console.log(this.response)
+    this.redditService.getDetail<Array<RedditResponse<Comment>>>("sweden", this.id).subscribe((data) => {
+      this.post = data[0].data.children
+      this.comments = data[1].data.children;
+      console.log(this.post);
+      this.loading = false;
     });
   }
 

@@ -1,17 +1,23 @@
-
-<input #search [value]="query" (keyup.enter)="update(search.value)" />
-<div class="input-field col s12">
-    <select (change)="limit($event.target.value)">
-        <option value="5">5</option>
-        <option value="10">10</option>
-        <option value="25">25</option>
+<div *ngIf="!loading">
+  <input #search [value]="query" (keyup.enter)="update(search.value)" />
+  <div class="input-field col s12">
+    <select (change)="limitresults($event.target.value)" [value]="limit">
+      <option value="5">5</option>
+      <option value="10">10</option>
+      <option value="25">25</option>
     </select>
-</div>
-<div *ngIf="main">
-  <h2 class="flow-text">{{main.data.title}}</h2>
-</div>
-<div *ngIf="data">
-  <div *ngFor="let post of data">
-    <app-entry (click)="navigate(post)" [subreddit]="post"></app-entry>
   </div>
+  <div id="navbox">
+    <a class="btn-floating btn-small waves-effect waves-light red" id="align-left" (click)="prev()"><i class="material-icons">arrow_back</i></a>
+    <h2 class="title">{{title}}</h2>
+    <a class="btn-floating btn-small waves-effect waves-light red" id="align-right" (click)="next()"><i class="material-icons">arrow_forward</i></a>
+  </div>
+  <div *ngIf="data && !loading">
+    <div *ngFor="let post of data">
+      <app-entry (click)="navigate(post)" [subreddit]="post"></app-entry>
+    </div>
+  </div>
+</div>
+<div class="loading" *ngIf="loading">
+  <app-loading></app-loading>
 </div>

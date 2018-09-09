@@ -5,6 +5,9 @@ import { Subreddit } from '../models/subreddit.model';
 import { Router } from '@angular/router';
 import { Data } from '../storage.service';
 
+const DEFAULT_LIMIT = 10;
+const DEFAULT_SUBREDDIT = "sweden"
+
 @Component({
   selector: 'app-subreddit',
   templateUrl: './subreddit.component.html',
@@ -12,33 +15,57 @@ import { Data } from '../storage.service';
 })
 export class SubredditComponent implements OnInit {
   data: Subreddit[];
-  main: Subreddit;
-  query: string = "sweden";
+  query: string = DEFAULT_SUBREDDIT;
+  after: string;
+  before: string;
+  limit: number = DEFAULT_LIMIT;
+  title: string;
+  loading: boolean;
 
-  constructor(private redditService: RedditService, private router: Router, private subredditStorage: Data<Subreddit>) { }
+  constructor(
+    private redditService: RedditService,
+    private router: Router,
+    private subredditStorage: Data<Subreddit>) { }
 
-  ngOnInit() {
-    this.getData(this.query, 25)
+  ngOnInit(): void {
+    this.getData(this.query, DEFAULT_LIMIT)
   }
 
-  update(value: string) {
+  update(value: string): void {
     this.query = value;
-    this.getData(value, 25)
+    this.getData(value, this.limit)
   }
-  navigate(subreddit: Subreddit) {
+  navigate(subreddit: Subreddit): void {
     this.subredditStorage.storage = subreddit;
     this.router.navigate([`/subreddit/${subreddit.data.subreddit_id}`])
   }
 
-  limit(limit) {
-    this.getData(this.query, limit)
+  next(): void {
+    this.getData(this.query, this.limit, "next")
   }
 
-  private getData(query: string, limit: number) {
-    this.redditService.get<RedditResponse<Subreddit>>(query, limit).subscribe((response: RedditResponse<Subreddit>) => {
-      // Shift first entry since it is the "description" of the subReddit
-      this.main = response.data.children.shift();
-      this.data = response.data.children
+  prev(): void {
+    this.getData(this.query, this.limit, "prev")
+  }
+
+  limitresults(limit): void {
+    this.limit = limit;
+    this.getData(this.query, limit, "next")
+  }
+
+  private getData(query: string, limit: number, action?: string): void {
+    this.loading = true;
+    const afterPost = this.after ? `&after=${this.after}` : '';
+    const beforePost = this.before ? `&before=${this.before}` : '';
+    const url = `${query}.json?limit=${limit}${action === "prev" ? beforePost : afterPost}&count=100`
+
+    this.redditService.getv2<RedditResponse<Subreddit>>(url).subscribe((response: RedditResponse<Subreddit>) => {
+      const { children, after, before } = response.data;
+      this.data = children
+      this.after = after;
+      this.before = before;
+      this.title = `/r/${query}`
+      this.loading = false;
     })
   }
 

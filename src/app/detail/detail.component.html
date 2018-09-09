@@ -1,29 +1,45 @@
-<!-- <div *ngFor="let data of response">
-  <div *ngFor="let post of data.data.children">
-    <p *ngIf="post.data.selftext">
-      {{post.data.selftext}}
-    </p>
-    <ul *ngIf="post.data.replies">
-      <ng-template #recursiveList let-list>
-        <li *ngFor="let item of post.data.replies.data.children">
-          {{item | json}}
-          <ul *ngIf="item.children.length > 0">
-            <ng-container *ngTemplateOutlet="recursiveList; context:{ $implicit: post.data.replies.data.children }"></ng-container>
-          </ul>
-        </li>
-      </ng-template>
-      <ng-container *ngTemplateOutlet="recursiveList; context:{ $implicit: list }"></ng-container>
-    </ul>
+<!-- <ul>
+  <ng-template #recursiveList let-list>
+    <li *ngFor="let item of comments">
+      {{item.data.body}}
+      <ul *ngIf="item.data.replies.data.children.length > 0">
+        <ng-container *ngTemplateOutlet="recursiveList; context:{ $implicit: item.data.replies.data.children }"></ng-container>
+      </ul>
+    </li>
+  </ng-template>
+  <ng-container *ngTemplateOutlet="recursiveList; context:{ $implicit: comments }"></ng-container>
+</ul> -->
 
-  </div>
-</div> -->
-
-<ul>
-  <li *ngFor="let item of response.data.children">
-    <div *ngFor="let comment of item.data.children">
-      <div *ngFor="let reply of comment.data.replies">
-        {{reply | json}}
+<div *ngIf="loading">
+  <app-loading></app-loading>
+</div>
+<div *ngIf="!loading">
+  <ul class="browser-default">
+    <li class="browser-default" *ngFor="let item of comments">
+      <div class="col s12 m8 offset-m2 l6 offset-l3">
+        <div class="card-panel grey lighten-5 z-depth-1">
+          <div class="row valign-wrapper">
+            <div class="col s2">
+              <img src="assets/fallback.png" alt="" class="circle responsive-img"> <!-- notice the "circle" class -->
+            </div>
+            <div class="col s10">
+              <span class="black-text">
+                <p>{{item.data.author}}</p>
+                <p>{{item.data.body}} </p>
+              </span>
+            </div>
+          </div>
+        </div>
       </div>
-    </div>
-  </li>
-</ul>
+
+      <div *ngIf="item.data.replies">
+        <ul class="browser-default">
+          <li class="browser-default">
+            <app-tree [node]="item.data.replies.data"></app-tree>
+          </li>
+        </ul>
+      </div>
+      <div class="divider"></div>
+    </li>
+  </ul>
+</div>

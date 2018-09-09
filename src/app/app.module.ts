@@ -9,6 +9,8 @@ import { SubredditComponent } from './subreddit/subreddit.component';
 import { HttpClientModule } from '@angular/common/http';
 import { DetailComponent } from './detail/detail.component';
 import { CommentComponent } from './comment/comment.component';
+import { TreeComponent } from './tree/tree.component';
+import { LoadingComponent } from './loading/loading.component';
 
 @NgModule({
   declarations: [
@@ -16,7 +18,9 @@ import { CommentComponent } from './comment/comment.component';
     EntryComponent,
     SubredditComponent,
     DetailComponent,
-    CommentComponent
+    CommentComponent,
+    TreeComponent,
+    LoadingComponent
   ],
   imports: [
     BrowserModule,
