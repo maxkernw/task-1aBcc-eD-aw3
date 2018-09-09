@@ -6,7 +6,7 @@
     <li class="browser-default" *ngFor="let item of comments">
       <span class="black-text">
         <p>{{item.data.selftext ? item.data.selftext : ''}}</p>
-        <p class="author">{{item.data.author}}</p>
+        <p class="author">{{item.data.author}}: </p>
         <p>{{item.data.body}} </p>
       </span>
 

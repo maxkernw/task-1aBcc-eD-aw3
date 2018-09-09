@@ -4,7 +4,7 @@
 
 #navbox {
     display: grid;
-    margin-top: 10px;
+    margin-top: 1rem;
     grid-template-columns: 90% 5% 5%;
     justify-items: center;
 }
@@ -14,7 +14,7 @@
 }
 
 #search {
-    border-bottom: 1px solid #e04700;
+    border-bottom: 0.1rem solid #e04700;
 }
 
 select {

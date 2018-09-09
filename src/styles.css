@@ -3,14 +3,14 @@
 
 ul {
     list-style: none;
-    padding: 5px;
+    padding: .5rem;
   }
   p {
-      font-size: 10px;
+      font-size: 1rem;
   }
 
   span.badge {
-      font-size: 10px
+      font-size: 1rem
   }
   .progress {
       background-color: white;
@@ -21,38 +21,38 @@ ul {
 
   * {margin: 0; padding: 0; list-style: none;}
 ul li {
-  margin-left: 15px;
+  margin-left: 1.5rem;
   position: relative;
-  padding-left: 5px;
+  padding-left: 1.5rem;
 }
 ul li::before {
   content: " ";
   position: absolute;
-  width: 1px;
+  width: 0.1rem;
   background-color: #000;
-  top: 5px;
-  bottom: -12px;
-  left: -10px;
+  top: 0.5rem;
+  bottom: -1.2rem;
+  left: -1rem;
 }
-body > ul > li:first-child::before {top: 12px;}
+body > ul > li:first-child::before {top: 1.2rem;}
 ul li:not(:first-child):last-child::before {display: none;}
 ul li:only-child::before {
   display: list-item;
   content: " ";
   position: absolute;
-  width: 1px;
+  width: 0.1rem;
   background-color: #000;
-  top: 5px;
-  bottom: 7px;
-  height: 7px;
-  left: -10px;
+  top: 0.5rem;
+  bottom: 0.7rem;
+  height: 0.7rem;
+  left: -1rem;
 }
 ul li::after {
   content: " ";
   position: absolute;
-  left: -10px;
-  width: 10px;
-  height: 1px;
+  left: -1rem;
+  width: 1rem;
+  height: 0.1rem;
   background-color: #000;
-  top: 12px;
+  top: 1.2rem;
 }
