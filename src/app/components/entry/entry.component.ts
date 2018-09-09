@@ -9,7 +9,6 @@ const fallbackImage = "./assets/fallback.png"
 @Component({
   selector: 'app-entry',
   templateUrl: './entry.component.html',
-  styleUrls: ['./entry.component.css']
 })
 
 export class EntryComponent implements OnInit {

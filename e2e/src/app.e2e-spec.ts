@@ -7,8 +7,23 @@ describe('workspace-project App', () => {
     page = new AppPage();
   });
 
-  it('should display welcome message', () => {
+  it('should display mav title', () => {
     page.navigateTo();
-    expect(page.getParagraphText()).toEqual('Welcome to bannerf!');
+    expect(page.getParagraphText()).toEqual('Reddit Reader');
+  });
+
+  it('search should have expected default value', () => {
+    page.navigateTo();
+    expect(page.getInput()).toEqual('sweden');
+  });
+
+  it('limit should have expected default value', () => {
+    page.navigateTo();
+    expect(page.getSelect()).toEqual('10');
+  });
+
+  it('title should have expected default value', () => {
+    page.navigateTo();
+    expect(page.getTitle()).toEqual('/r/sweden');
   });
 });

@@ -6,6 +6,18 @@ export class AppPage {
   }
 
   getParagraphText() {
-    return element(by.css('app-root h1')).getText();
+    return element(by.className('brand-name')).getText();
+  }
+
+  getInput() {
+    return element(by.id('search')).getAttribute("value");
+  }
+
+  getSelect() {
+    return element(by.id('select-box-limit')).getAttribute("value");
+  }
+
+  getTitle() {
+    return element(by.className('title')).getText();
   }
 }

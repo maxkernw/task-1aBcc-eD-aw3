@@ -5,7 +5,7 @@
   </div>
 
   <div class="input-field col s3">
-    <select class="browser-default" (change)="limitresults($event.target.value)" [value]="limit">
+    <select class="browser-default" id="select-box-limit" (change)="limitresults($event.target.value)" [value]="limit">
       <option value="5">5</option>
       <option value="10">10</option>
       <option value="25">25</option>

@@ -11,10 +11,13 @@
           <p><span class="badge">comments: {{num_comments}}</span></p>
         </span>
       </div>
-      <p><span class="badge">{{created * 1000 | date: 'short'}}</span></p>
-      <span class="badge"><a target="_blank" [href]="permalink" class="btn-floating btn-small waves-effect waves-light red"><i
-            class="material-icons">open_in_new</i></a></span>
-
+      <p>
+        <span class="badge">{{created * 1000 | date: 'short'}}</span>
+      </p>
+      <span class="badge"><a target="_blank" [href]="permalink" class="btn-floating btn-small waves-effect waves-light red">
+          <i class="material-icons">open_in_new</i>
+        </a>
+      </span>
     </div>
   </div>
 </div>

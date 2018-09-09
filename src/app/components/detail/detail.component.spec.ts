@@ -6,9 +6,9 @@ import { TreeComponent } from '../tree/tree.component';
 import { ActivatedRoute, Params } from '@angular/router';
 import { RedditService } from '../../services/reddit.service';
 import { HttpClientModule } from '@angular/common/http';
-import { Observable, of } from 'rxjs';
+import { of } from 'rxjs';
 
-fdescribe('DetailComponent', () => {
+describe('DetailComponent', () => {
   let component: DetailComponent;
   let fixture: ComponentFixture<DetailComponent>;
 
