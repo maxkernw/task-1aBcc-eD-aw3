@@ -3,13 +3,15 @@ import { Subreddit } from '../../models/subreddit.model';
 import { isUrl } from '../../helpers/isUrl.helper';
 import { Router } from '@angular/router';
 import { Data } from '../../services/storage.service';
-const fallbackImage = "../../../assets/fallback.png"
+
+const fallbackImage = "./assets/fallback.png"
 
 @Component({
   selector: 'app-entry',
   templateUrl: './entry.component.html',
   styleUrls: ['./entry.component.css']
 })
+
 export class EntryComponent implements OnInit {
 
   @Input() subreddit: Subreddit;
@@ -22,7 +24,8 @@ export class EntryComponent implements OnInit {
   num_comments: number;
   id: string;
 
-  constructor(private router: Router, private subredditStorage: Data<Subreddit> ) { }
+  constructor(private router: Router,
+    private subredditStorage: Data<Subreddit>) { }
 
   ngOnInit() {
     const { thumbnail,
@@ -31,7 +34,8 @@ export class EntryComponent implements OnInit {
       permalink,
       score,
       num_comments,
-      author, id } = this.subreddit.data;
+      author, id
+    } = this.subreddit.data;
 
     this.thumbnail = isUrl(thumbnail) ? thumbnail : fallbackImage;
     this.created = created;
@@ -41,7 +45,6 @@ export class EntryComponent implements OnInit {
     this.num_comments = num_comments;
     this.author = author;
     this.id = id
-    console.log(this.subreddit.data)
   }
 
   navigate(): void {

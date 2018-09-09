@@ -1,21 +1,25 @@
-<div *ngIf="!loading">
-  <input #search [value]="query" (keyup.enter)="update(search.value)" />
+<div class="nav-wrapper">
+  <div class="input-field">
+    <input #search [value]="query" (keyup.enter)="update(search.value)" id="search" type="search" required>
+    <label class="label-icon" for="search"><i class="material-icons">search</i></label>
+    <i class="material-icons">close</i>
+  </div>
   <div class="input-field col s12">
-    <select (change)="limitresults($event.target.value)" [value]="limit">
+    <select class="browser-default" (change)="limitresults($event.target.value)" [value]="limit">
       <option value="5">5</option>
       <option value="10">10</option>
       <option value="25">25</option>
     </select>
   </div>
-  <div id="navbox" *ngIf="!error">
+
+  
+  <app-error *ngIf="error"></app-error>
+  <div *ngIf="data && !loading && !error">
+    <h3 class="title">{{title}}</h3>
     <a class="btn-floating btn-small waves-effect waves-light red" id="align-left" (click)="prev()"><i class="material-icons">arrow_back</i></a>
-    <h2 class="title">{{title}}</h2>
     <a class="btn-floating btn-small waves-effect waves-light red" id="align-right" (click)="next()">
       <i class="material-icons">arrow_forward</i>
     </a>
-  </div>
-  <app-error *ngIf="error"></app-error>
-  <div *ngIf="data && !loading && !error">
     <div *ngFor="let post of data">
       <app-entry [subreddit]="post"></app-entry>
     </div>

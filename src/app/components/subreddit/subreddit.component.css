@@ -5,14 +5,12 @@
 #navbox {
     display: grid;
     margin-top: 10px;
-    grid-template-columns: 5% 90% 5%;
+    grid-template-columns: 90% 5% 5%;
     justify-items: center;
 }
 
-#align-left {
-    margin-top: 90px;
-}
+
 
 #align-right {
-    margin-top: 90px;
+float:right
 }
