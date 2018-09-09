@@ -13,17 +13,9 @@ export class HttpService implements IHttpService {
   constructor(private http: HttpClient) {
 
   }
-  get<T>(subredditName: string, limit: number, after?: string): Observable<T> {
-     return this.http.get<T>(`${this.baseUrl}/${subredditName}.json?limit=${limit}`)
-  }
 
-  getv2<T>(path: string): Observable<T> {
+  get<T>(path: string): Observable<T> {
     return this.http.get<T>(`${this.baseUrl}/${path}`)
- }
-
-  getDetail<T>(subredditName: string, id: string): Observable<T> {
-    console.log(id)
-    return this.http.get<T>(`${this.baseUrl}/${subredditName}/comments/${id}.json`)
   }
 }
 

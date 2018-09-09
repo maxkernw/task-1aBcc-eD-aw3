@@ -3,8 +3,8 @@
 
 ul {
     list-style: none;
+    padding: 5px;
   }
-
-  .loading {
-    text-align: center;
-}
+  p {
+      font-size: 10px;
+  }

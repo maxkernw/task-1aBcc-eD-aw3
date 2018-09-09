@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Data } from '../storage.service';
-import { Router } from '@angular/router';
+import { Router, ActivatedRoute, Params } from '@angular/router';
 import { Subreddit } from '../models/subreddit.model';
 import { RedditService } from '../reddit.service';
 import { RedditResponse } from '../models/redditResponse.model';
@@ -12,30 +12,27 @@ import { RedditResponse } from '../models/redditResponse.model';
 })
 export class DetailComponent implements OnInit {
   selftext: string;
-  id: string;
-  comments: any;
-  post: any;
+  comments: Comment[];
+  post: Comment[];
   loading: boolean = true;
 
-  public constructor(private data: Data<Subreddit>, private router: Router, private redditService: RedditService) { }
+  public constructor(private route: ActivatedRoute, private router: Router, private redditService: RedditService) { }
 
-  ngOnInit() {
-    if (this.data.storage == null) {
-      this.router.navigate(["subreddit"])
-    }
-    const { selftext, id } = this.data.storage.data;
-    this.id = id;
-    this.selftext = selftext != "" ? selftext : "no data";
-    this.getData();
+  ngOnInit(): void {
+    const { sub } = this.route.snapshot.params
+    this.route.queryParams.subscribe((data: Params) => {
+      this.getData(sub, data.id)
+    })
   }
 
-  getData(): void {
-    this.redditService.getDetail<Array<RedditResponse<Comment>>>("sweden", this.id).subscribe((data) => {
-      this.post = data[0].data.children
-      this.comments = data[1].data.children;
-      console.log(this.post);
-      this.loading = false;
-    });
-  }
+  getData(subreddit: string, id: string): void {
+    const url = `${subreddit}/comments/${id}.json`
 
+    this.redditService.get<Array<RedditResponse<Comment>>>(url)
+      .subscribe(data => {
+        this.post = data[0].data.children
+        this.comments = data[1].data.children;
+        this.loading = false;
+      })
+  }
 }

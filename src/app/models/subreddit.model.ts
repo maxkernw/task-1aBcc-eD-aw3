@@ -12,5 +12,6 @@ export interface Subreddit {
         selftext: string,
         id: string,
         name: string
+        subreddit: string
     }
 }

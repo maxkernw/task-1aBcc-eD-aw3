@@ -7,14 +7,17 @@
       <option value="25">25</option>
     </select>
   </div>
-  <div id="navbox">
+  <div id="navbox" *ngIf="!error">
     <a class="btn-floating btn-small waves-effect waves-light red" id="align-left" (click)="prev()"><i class="material-icons">arrow_back</i></a>
     <h2 class="title">{{title}}</h2>
-    <a class="btn-floating btn-small waves-effect waves-light red" id="align-right" (click)="next()"><i class="material-icons">arrow_forward</i></a>
+    <a class="btn-floating btn-small waves-effect waves-light red" id="align-right" (click)="next()">
+      <i class="material-icons">arrow_forward</i>
+    </a>
   </div>
-  <div *ngIf="data && !loading">
+  <app-error *ngIf="error"></app-error>
+  <div *ngIf="data && !loading && !error">
     <div *ngFor="let post of data">
-      <app-entry (click)="navigate(post)" [subreddit]="post"></app-entry>
+      <app-entry [subreddit]="post"></app-entry>
     </div>
   </div>
 </div>

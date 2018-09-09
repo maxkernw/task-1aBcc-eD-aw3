@@ -11,6 +11,7 @@ import { DetailComponent } from './detail/detail.component';
 import { CommentComponent } from './comment/comment.component';
 import { TreeComponent } from './tree/tree.component';
 import { LoadingComponent } from './loading/loading.component';
+import { ErrorComponent } from './error/error.component';
 
 @NgModule({
   declarations: [
@@ -20,7 +21,8 @@ import { LoadingComponent } from './loading/loading.component';
     DetailComponent,
     CommentComponent,
     TreeComponent,
-    LoadingComponent
+    LoadingComponent,
+    ErrorComponent
   ],
   imports: [
     BrowserModule,

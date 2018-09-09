@@ -1,16 +1,16 @@
 <div class="col s12 m8 offset-m2 l6 offset-l3">
-  <div class="card-panel grey lighten-5 z-depth-1">
+  <div class="card-panel white lighten-5 z-depth-1">
     <div class="row valign-wrapper">
       <div class="col s2">
         <img class="circle responsive-img" [src]="thumbnail">
       </div>
       <div class="col s10">
         <span class="black-text">
-          <h4 class="flow-text">{{subreddit.data.title}}</h4>
-          <p>POINTS: {{score}}</p>
-          <p>COMMENTS: {{num_comments}}</p>
-          <p>DATE: {{created * 1000 | date: 'medium'}}</p>
-          <a href="{{permalink}}">link</a>
+          <h4 [routerLink]="['/subreddit', subreddit.data.subreddit]" [queryParams]="{ id: id }" >{{subreddit.data.title}}</h4>
+          <p><span class="badge"> {{score}}</span>points</p>
+          <p><span class="badge"> {{num_comments}}</span>comments</p>
+          <p><span class="badge">{{created * 1000 | date: 'medium'}}</span>-</p>
+          <span class="badge"><a target="_blank" [href]="permalink" class="btn-floating btn-small waves-effect waves-light red"><i class="material-icons">open_in_new</i></a></span>
         </span>
       </div>
     </div>
