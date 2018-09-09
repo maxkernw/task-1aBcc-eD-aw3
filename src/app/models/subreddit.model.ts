@@ -1,4 +1,3 @@
-
 export interface Subreddit {
     data: {
         thumbnail: string,

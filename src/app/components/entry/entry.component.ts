@@ -1,8 +1,8 @@
 import { Component, OnInit, Input } from '@angular/core';
-import { Subreddit } from '../models/subreddit.model';
-import { isUrl } from '../helpers/isUrl.helper';
+import { Subreddit } from '../../models/subreddit.model';
+import { isUrl } from '../../helpers/isUrl.helper';
 import { Router } from '@angular/router';
-import { Data } from '../storage.service';
+import { Data } from '../../services/storage.service';
 const fallbackImage = "../../../assets/fallback.png"
 
 @Component({

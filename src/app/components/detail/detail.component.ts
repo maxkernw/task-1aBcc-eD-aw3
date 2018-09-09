@@ -1,9 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import { Data } from '../storage.service';
 import { Router, ActivatedRoute, Params } from '@angular/router';
-import { Subreddit } from '../models/subreddit.model';
-import { RedditService } from '../reddit.service';
-import { RedditResponse } from '../models/redditResponse.model';
+import { RedditService } from '../../services/reddit.service';
+import { RedditResponse } from '../../models/redditResponse.model';
 
 @Component({
   selector: 'app-detail',

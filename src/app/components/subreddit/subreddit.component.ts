@@ -1,8 +1,8 @@
 import { Component, OnInit } from '@angular/core';
-import { RedditService } from '../reddit.service';
-import { RedditResponse } from '../models/redditResponse.model';
-import { Subreddit } from '../models/subreddit.model';
-import { Data } from '../storage.service';
+import { RedditService } from '../../services/reddit.service';
+import { RedditResponse } from '../../models/redditResponse.model';
+import { Subreddit } from '../../models/subreddit.model';
+import { Data } from '../../services/storage.service';
 
 const DEFAULT_LIMIT = 10;
 const DEFAULT_SUBREDDIT = "sweden"
@@ -61,6 +61,7 @@ export class SubredditComponent implements OnInit {
       this.after = after;
       this.before = before;
       this.title = `/r/${query}`
+
       this.loading = false;
       this.error = false;
     }, error => {
