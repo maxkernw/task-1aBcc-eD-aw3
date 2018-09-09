@@ -10,11 +10,11 @@ export class AppPage {
   }
 
   getInput() {
-    return element(by.id('search')).getAttribute("value");
+    return element(by.id('search')).getAttribute('value');
   }
 
   getSelect() {
-    return element(by.id('select-box-limit')).getAttribute("value");
+    return element(by.id('select-box-limit')).getAttribute('value');
   }
 
   getTitle() {

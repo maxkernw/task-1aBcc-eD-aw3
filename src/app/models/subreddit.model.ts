@@ -12,5 +12,5 @@ export interface Subreddit {
         id: string,
         name: string
         subreddit: string
-    }
+    };
 }

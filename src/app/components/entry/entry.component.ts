@@ -4,7 +4,7 @@ import { isUrl } from '../../helpers/isUrl.helper';
 import { Router } from '@angular/router';
 import { Data } from '../../services/storage.service';
 
-const fallbackImage = "./assets/fallback.png"
+const FALLBACK_IMAGE = './assets/fallback.png';
 
 @Component({
   selector: 'app-entry',
@@ -14,6 +14,7 @@ const fallbackImage = "./assets/fallback.png"
 export class EntryComponent implements OnInit {
 
   @Input() subreddit: Subreddit;
+
   created: number;
   thumbnail: string;
   title: string;
@@ -36,18 +37,18 @@ export class EntryComponent implements OnInit {
       author, id
     } = this.subreddit.data;
 
-    this.thumbnail = isUrl(thumbnail) ? thumbnail : fallbackImage;
+    this.thumbnail = isUrl(thumbnail) ? thumbnail : FALLBACK_IMAGE;
     this.created = created;
     this.title = title;
-    this.permalink = `https://reddit.com${permalink}`
+    this.permalink = `https://reddit.com${permalink}`;
     this.score = score;
     this.num_comments = num_comments;
     this.author = author;
-    this.id = id
+    this.id = id;
   }
 
   navigate(): void {
     this.subredditStorage.storage = this.subreddit;
-    this.router.navigate([`/subreddit/${this.subreddit.data.subreddit_id}`])
+    this.router.navigate([`/subreddit/${this.subreddit.data.subreddit_id}`]);
   }
 }

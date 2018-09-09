@@ -4,5 +4,5 @@ export interface RedditResponse<T> {
         after: string;
         before: string;
         kind: string
-    }
+    };
 }

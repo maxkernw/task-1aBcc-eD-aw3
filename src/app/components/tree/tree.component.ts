@@ -5,6 +5,6 @@ import { Component, Input } from '@angular/core';
   templateUrl: './tree.component.html',
   styleUrls: ['./tree.component.css']
 })
-export class TreeComponent{
+export class TreeComponent {
   @Input() node;
 }

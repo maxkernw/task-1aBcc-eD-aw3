@@ -6,4 +6,4 @@ export const routes: Routes = [
     { path: 'subreddit', component: SubredditComponent },
     { path: 'subreddit/:sub', component: DetailComponent },
     { path: '**', component: SubredditComponent }
-] 
+];

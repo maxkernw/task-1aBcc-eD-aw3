@@ -15,9 +15,9 @@ describe('DetailComponent', () => {
   beforeEach(async(() => {
     const fakeActivatedRoute = {
       snapshot: { params: {} },
-      queryParams: of({ data: "id" } as Params)
+      queryParams: of({ data: 'id' } as Params)
     } as ActivatedRoute;
-    fakeActivatedRoute.snapshot.params = { sub: "awd" }
+    fakeActivatedRoute.snapshot.params = { sub: 'foo' };
 
     TestBed.configureTestingModule({
       declarations: [DetailComponent, LoadingComponent, TreeComponent],

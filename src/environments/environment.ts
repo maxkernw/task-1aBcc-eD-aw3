@@ -4,7 +4,7 @@
 
 export const environment = {
   production: false,
-  url: "https://www.reddit.com/r"
+  url: 'https://www.reddit.com/r'
 };
 
 /*

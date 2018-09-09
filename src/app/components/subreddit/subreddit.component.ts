@@ -5,7 +5,7 @@ import { Subreddit } from '../../models/subreddit.model';
 import { Data } from '../../services/storage.service';
 
 const DEFAULT_LIMIT = 10;
-const DEFAULT_SUBREDDIT = "sweden"
+const DEFAULT_SUBREDDIT = 'sweden';
 
 @Component({
   selector: 'app-subreddit',
@@ -18,50 +18,49 @@ export class SubredditComponent implements OnInit {
   before: string;
   title: string;
   loading: boolean;
-  error: boolean = false;
+  error = false;
 
   query: string = DEFAULT_SUBREDDIT;
   limit: number = DEFAULT_LIMIT;
 
-  sub: any;
   constructor(
     private redditService: RedditService, private queryStorage: Data<{ query: string }>) { }
 
   ngOnInit(): void {
-    this.query = this.queryStorage.storage ? this.queryStorage.storage.query : DEFAULT_SUBREDDIT
-    this.getData()
+    this.query = this.queryStorage.storage ? this.queryStorage.storage.query : DEFAULT_SUBREDDIT;
+    this.getData();
   }
 
   update(value: string): void {
     this.query = value;
     this.queryStorage.storage = { query: value };
-    this.getData()
+    this.getData();
   }
 
   next(): void {
-    this.getData(`&after=${this.after}`)
+    this.getData(`&after=${this.after}`);
   }
 
   prev(): void {
-    this.getData(`&before=${this.before}`)
+    this.getData(`&before=${this.before}`);
   }
 
   limitresults(limit): void {
     this.limit = limit;
-    this.getData()
+    this.getData();
   }
 
   private getData(pagination?: string): void {
     this.loading = true;
-    const url = `${this.query}.json?limit=${this.limit}&count=100${pagination}`
+    const url = `${this.query}.json?limit=${this.limit}&count=100${pagination}`;
 
     this.redditService.get<RedditResponse<Subreddit>>(url)
       .subscribe(response => {
         const { children, after, before } = response.data;
-        this.data = children
+        this.data = children;
         this.after = after;
         this.before = before;
-        this.title = `/r/${this.query}`
+        this.title = `/r/${this.query}`;
 
         this.loading = false;
         this.error = false;
@@ -72,5 +71,4 @@ export class SubredditComponent implements OnInit {
         console.error(error);
       });
   }
-
 }

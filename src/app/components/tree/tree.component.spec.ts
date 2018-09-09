@@ -1,17 +1,18 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
-
 import { TreeComponent } from './tree.component';
+
 const MockData = {
   children: [
     {
       data: {
-        author: "",
-        body: "",
-        replies: { data: "" }
+        author: '',
+        body: '',
+        replies: { data: '' }
       }
     }
   ]
-}
+};
+
 describe('TreeComponent', () => {
   let component: TreeComponent;
   let fixture: ComponentFixture<TreeComponent>;
@@ -25,9 +26,9 @@ describe('TreeComponent', () => {
 
   beforeEach(() => {
     fixture = TestBed.createComponent(TreeComponent);
-    fixture.componentInstance.node = MockData
+    fixture.componentInstance.node = MockData;
     component = fixture.componentInstance;
-    fixture.componentInstance.node = {}
+    fixture.componentInstance.node = {};
     fixture.detectChanges();
   });
 
