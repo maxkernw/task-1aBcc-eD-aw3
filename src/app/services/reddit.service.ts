@@ -5,7 +5,6 @@ import { HttpClient } from "@angular/common/http";
 
 @Injectable()
 export class RedditService extends HttpService {
-    
     constructor(http: HttpClient) {
         super(http);
     }

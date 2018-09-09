@@ -19,10 +19,11 @@ export class SubredditComponent implements OnInit {
   title: string;
   loading: boolean;
   error: boolean = false;
-  
+
   query: string = DEFAULT_SUBREDDIT;
   limit: number = DEFAULT_LIMIT;
 
+  sub: any;
   constructor(
     private redditService: RedditService, private queryStorage: Data<{ query: string }>) { }
 
@@ -54,21 +55,22 @@ export class SubredditComponent implements OnInit {
     this.loading = true;
     const url = `${this.query}.json?limit=${this.limit}&count=100${pagination}`
 
-    this.redditService.get<RedditResponse<Subreddit>>(url).subscribe((response: RedditResponse<Subreddit>) => {
+    this.redditService.get<RedditResponse<Subreddit>>(url)
+      .subscribe(response => {
+        const { children, after, before } = response.data;
+        this.data = children
+        this.after = after;
+        this.before = before;
+        this.title = `/r/${this.query}`
 
-      const { children, after, before } = response.data;
-      this.data = children
-      this.after = after;
-      this.before = before;
-      this.title = `/r/${this.query}`
+        this.loading = false;
+        this.error = false;
 
-      this.loading = false;
-      this.error = false;
-    }, error => {
-      this.loading = false;
-      this.error = true;
-      console.error(error);
-    });
+      }, error => {
+        this.loading = false;
+        this.error = true;
+        console.error(error);
+      });
   }
 
 }

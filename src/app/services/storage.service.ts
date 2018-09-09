@@ -4,9 +4,7 @@ import { Injectable } from "@angular/core";
     providedIn: 'root'
 })
 export class Data<T> {
-
     public storage: T;
-
     public constructor() { }
 
     public clearStorage() {

@@ -12,3 +12,11 @@
 #align-right {
     float:right
 }
+
+#search {
+    border-bottom: 1px solid #e04700;
+}
+
+select {
+    border: 0;
+}
