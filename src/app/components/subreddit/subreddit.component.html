@@ -11,12 +11,13 @@
   </div>
 </div>
 
-
 <app-error *ngIf="error"></app-error>
 <div *ngIf="data && !loading && !error">
   <h3 class="title">{{title}}</h3>
-  <a class="btn-floating btn-small waves-effect waves-light red" id="align-left" (click)="prev()"><i class="material-icons">arrow_back</i></a>
-  <a class="btn-floating btn-small waves-effect waves-light red" id="align-right" (click)="next()">
+  <a class="btn btn-small waves-effect waves-light red" id="align-left" (click)="prev()">
+    <i class="material-icons">arrow_back</i>
+  </a>
+  <a class="btn btn-small waves-effect waves-light red" id="align-right" (click)="next()">
     <i class="material-icons">arrow_forward</i>
   </a>
   <div *ngFor="let post of data">

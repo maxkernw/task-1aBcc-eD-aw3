@@ -1,6 +1,6 @@
 <li class="browser-default comment" *ngFor="let node of node.children">
   <span class="black-text">
-    <p class="author">{{node.data.author}}</p>
+    <p class="author">{{node.data.author}}: </p>
     <p>{{node.data.body}} </p>
   </span>
   <div *ngIf="node.data.replies">
