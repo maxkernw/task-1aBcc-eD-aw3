@@ -13,6 +13,7 @@ export class DetailComponent implements OnInit {
   comments: Comment[];
   post: Comment[];
   loading = true;
+  error = false;
 
   public constructor(private route: ActivatedRoute, private redditService: RedditService) { }
 
@@ -24,13 +25,16 @@ export class DetailComponent implements OnInit {
   }
 
   getData(subreddit: string, id: string): void {
-    const url = `${subreddit}/comments/${id}.json`;
-
-    this.redditService.get<Array<RedditResponse<Comment>>>(url)
+    this.redditService.get<Array<RedditResponse<Comment>>>(`${subreddit}/comments/${id}.json`)
       .subscribe(data => {
         this.post = data[0].data.children;
         this.comments = data[1].data.children;
         this.loading = false;
+        this.error = false;
+      },
+      error => {
+        this.error = true;
+        console.error(error);
       });
   }
 }

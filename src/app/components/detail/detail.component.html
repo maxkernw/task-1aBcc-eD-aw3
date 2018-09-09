@@ -1,7 +1,10 @@
 <div *ngIf="loading">
   <app-loading></app-loading>
 </div>
-<div class="row" *ngIf="!loading">
+<div *ngIf="error">
+  <app-error></app-error>
+</div>
+<div class="row" *ngIf="!loading &&!error">
   <ul class="browser-default">
     <li class="browser-default" *ngFor="let item of comments">
       <span class="black-text">

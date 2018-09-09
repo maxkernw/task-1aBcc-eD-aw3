@@ -16,10 +16,10 @@
 <app-error *ngIf="error"></app-error>
 <div *ngIf="data && !error">
   <h3 class="title">{{title}}</h3>
-  <a class="btn btn-small waves-effect waves-light red" id="align-left" (click)="prev()">
+  <a class="btn btn-small waves-effect waves-light red z-depth-1" id="align-left" (click)="prev()">
     <i class="material-icons">arrow_back</i>
   </a>
-  <a class="btn btn-small waves-effect waves-light red" id="align-right" (click)="next()">
+  <a class="btn btn-small waves-effect waves-light red z-depth-1" id="align-right" (click)="next()">
     <i class="material-icons">arrow_forward</i>
   </a>
   <div *ngIf="!loading">

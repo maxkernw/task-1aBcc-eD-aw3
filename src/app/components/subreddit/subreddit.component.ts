@@ -5,7 +5,7 @@ import { Subreddit } from '../../models/subreddit.model';
 import { Data } from '../../services/storage.service';
 
 const DEFAULT_LIMIT = 10;
-const DEFAULT_SUBREDDIT = 'sweden';
+const DEFAULT_SUBREDDIT = 'Sweden';
 
 @Component({
   selector: 'app-subreddit',
@@ -31,9 +31,9 @@ export class SubredditComponent implements OnInit {
     this.getData();
   }
 
-  update(value: string): void {
-    this.query = value;
-    this.queryStorage.storage = { query: value };
+  update(search: string): void {
+    this.query = search;
+    this.queryStorage.storage = { query: search };
     this.getData();
   }
 
@@ -52,16 +52,11 @@ export class SubredditComponent implements OnInit {
 
   private getData(pagination?: string): void {
     this.loading = true;
-    const url = `${this.query}.json?limit=${this.limit}&count=100${pagination}`;
 
-    this.redditService.get<RedditResponse<Subreddit>>(url)
+    this.redditService.get<RedditResponse<Subreddit>>(
+      this.composeUrl(pagination))
       .subscribe(response => {
-        const { children, after, before } = response.data;
-        this.data = children;
-        this.after = after;
-        this.before = before;
-        this.title = `/r/${this.query}`;
-
+        this.extractData(response.data);
         this.loading = false;
         this.error = false;
 
@@ -70,5 +65,16 @@ export class SubredditComponent implements OnInit {
         this.error = true;
         console.error(error);
       });
+  }
+
+  private composeUrl(pagination?: string): string {
+    return `${this.query}.json?limit=${this.limit}&count=100${pagination}`;
+  }
+
+  private extractData({ children, after, before }: { children: Subreddit[], after: string, before: string }) {
+    this.data = children;
+    this.after = after;
+    this.before = before;
+    this.title = `/r/${this.query}`;
   }
 }

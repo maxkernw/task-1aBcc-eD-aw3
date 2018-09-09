@@ -24,8 +24,7 @@ export class EntryComponent implements OnInit {
   num_comments: number;
   id: string;
 
-  constructor(private router: Router,
-    private subredditStorage: Data<Subreddit>) { }
+  constructor(private router: Router, private subredditStorage: Data<Subreddit>) { }
 
   ngOnInit() {
     const { thumbnail,
